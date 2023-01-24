@@ -21,7 +21,7 @@ import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("/api/employees")
-@Api(value="onlinestore", description="Operations pertaining to products in Online Store")
+@Api(value="EmployeeDetails", description="Operations pertaining to employees in Tech Company")
 public class EmployeeController {
 
 	private EmployeeService employeeService;
@@ -32,7 +32,7 @@ public class EmployeeController {
 	}
 	
 	
-	@ApiOperation(value = "Add a Employee")
+	@ApiOperation(value = "Add an Employee")
 	@PostMapping
 	public ResponseEntity<Employee> createEmployee(@RequestBody Employee employee){
 		Employee saveEmployee = employeeService.createEmployee(employee);
