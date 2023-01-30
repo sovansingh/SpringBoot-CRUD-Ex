@@ -2,6 +2,8 @@ package com.app.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -34,16 +36,16 @@ public class EmployeeController {
 	
 	@ApiOperation(value = "Add an Employee")
 	@PostMapping
-	public ResponseEntity<Employee> createEmployee(@RequestBody Employee employee){
+	public ResponseEntity<Employee> createEmployee(@Valid @RequestBody Employee employee){
 		Employee saveEmployee = employeeService.createEmployee(employee);
 		return new ResponseEntity<>(saveEmployee,HttpStatus.CREATED);
 	}
 	
-	@ApiOperation(value = "Search a Employee with an ID",response = Employee.class)
+	@ApiOperation(value = "Search an Employee with an ID",response = Employee.class)
 	@GetMapping("{id}")
 	public ResponseEntity<Employee> getEmployeeById(@PathVariable("id") Long employeeId){
-		Employee employee = employeeService.getEmployeeById(employeeId);
-		return new ResponseEntity<>(employee,HttpStatus.OK);
+			Employee employee = employeeService.getEmployeeById(employeeId);
+			return new ResponseEntity<Employee>(employee,HttpStatus.OK);			
 	}
 	
 	@ApiOperation(value = "View a list of available Employees",response = Iterable.class)
@@ -57,9 +59,9 @@ public class EmployeeController {
 	@PutMapping("{id}")
 	public ResponseEntity<Employee> updateEmployee(@PathVariable("id") Long employeeId,
 													@RequestBody Employee employee){
-		employee.setId(employeeId);
-		Employee updatedEmployee = employeeService.updateEmployee(employee);
-		return new ResponseEntity<>(updatedEmployee,HttpStatus.OK);
+			employee.setId(employeeId);
+			Employee updatedEmployee = employeeService.updateEmployee(employee);
+			return new ResponseEntity<>(updatedEmployee,HttpStatus.OK);	
 	}
 	
 	@ApiOperation(value = "Delete an Employee")

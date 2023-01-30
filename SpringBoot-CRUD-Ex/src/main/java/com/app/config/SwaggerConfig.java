@@ -1,5 +1,8 @@
 package com.app.config;
 
+import static com.google.common.base.Predicates.or;
+import static springfox.documentation.builders.PathSelectors.regex;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -10,8 +13,6 @@ import springfox.documentation.service.ApiInfo;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
-import static springfox.documentation.builders.PathSelectors.regex;
-import static com.google.common.base.Predicates.or;
 
 @Configuration
 @EnableSwagger2
@@ -24,17 +25,16 @@ public class SwaggerConfig {
 	}
 	
 	private Predicate<String> postPaths() {
-//		return or(regex("/api/posts.*"), regex("/api/javainuse.*"));
 		return or(regex("/api/posts.*"), regex("/api/employees.*"));
 	}
 
 	private ApiInfo apiInfo() {
 		return new ApiInfoBuilder().title("springboot-curd-api")
 				.description("Demo project for Spring Boot Restful Webservices")
-				.termsOfServiceUrl("http://javainuse.com")
-//				.contact("javainuse@gmail.com")
-//				.license("JavaInUse License")
-//				.licenseUrl("javainuse@gmail.com")
+				.termsOfServiceUrl("http://facebook.com")
+//				.contact("")
+//				.license("")
+//				.licenseUrl("")
 				.version("1.0")
 				.build();
 	}
